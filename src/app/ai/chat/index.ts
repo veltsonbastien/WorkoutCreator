@@ -1,0 +1,1 @@
+export { getResponse } from "./getResponse";
