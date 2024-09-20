@@ -8,7 +8,7 @@ export const useWorkout = () => {
 
   const fetchWorkout = async (
     prompt: string,
-    setWorkout: (w: RetrievedExercise[]) => void,
+    setWorkout: (w: RetrievedExercise[] | null) => void,
   ) => {
     try {
       setLoading(true);
@@ -16,6 +16,8 @@ export const useWorkout = () => {
       const fetchedWorkout = await getWorkout(prompt);
       if (!fetchedWorkout) {
         console.error("Failed to fetch workout");
+        setWorkout(null)
+        return;
       }
 
       const workout: RetrievedExercise[] = formatFetchedWorkout(fetchedWorkout);

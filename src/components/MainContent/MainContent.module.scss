@@ -5,4 +5,77 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    margin-top: 16%;
+    gap: 8px;
+
+    @media (max-width: 768px) {
+      margin-top: 16%;
+    }
+
+  }
+
+  .input-wrapper {
+    display: flex;
+    font-size: 24px;
+    padding: 8px;
+    border-radius: 8px;
+    min-width: 320px;
+    gap: 8px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+
+    input {
+      font-size: 16px;
+      padding: 8px;
+      border-radius: 8px;
+      min-width: 320px;
+    }
+
+    button {
+      font-size: 16px;
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+
+      background-color: #e0e0e0;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #d0d0d0;
+      }
+
+      &:active {
+        background-color: #c0c0c0;
+      }
+    }
+  }
+
+  .workout-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 4% 8% 4%;
+    
+    .exercise {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-basis: 33.3333%;
+      border: 1px solid black;
+      padding: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  }
+
+
 }

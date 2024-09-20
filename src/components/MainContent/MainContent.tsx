@@ -9,7 +9,8 @@ export const MainContent = () => {
   const testPrompt = "Could you build me a workout for back and biceps?";
 
   const [prompt, setPrompt] = useState("");
-  const [workout, setWorkout] = useState<RetrievedExercise[]>([]);
+  const [workout, setWorkout] = useState<RetrievedExercise[] | null>(null);
+  console.log("workout: ", workout)
 
   const { loading, error, fetchWorkout } = useWorkout();
 
@@ -20,7 +21,7 @@ export const MainContent = () => {
   return (
     <div className={styles["wrapper"]}>
       <div className={styles["header"]}>
-        <h1> Let&apos;s Create a Workout for you! </h1>
+        <h1> Build me a Workout </h1>
         <p>
           <b>RM</b> = Repetition Maximum. For a given exercise, find your max
           weight and calculate it based on the given percentage.
@@ -43,27 +44,28 @@ export const MainContent = () => {
           <p>Loading...</p>
         ) : error ? (
           <p>{error}</p>
-        ) : workout.length === 0 ? (
+        ) : workout && workout.length === 0 ? (
           <p> Error generating workouts, please try again...</p>
         ) : (
-          workout.map((exercise, idx) => (
+          workout && workout.map((exercise, idx) => (
             <div key={idx} className={styles["exercise"]}>
               <h2>{exercise.title}</h2>
               <p>
-                <b>Main Muscle Group:</b> {exercise.mainMuscleGroup}
-              </p>
-              <p>
-                <b>Body Parts Worked:</b> {exercise.bodyPartsWorked}
+                {exercise.mainMuscleGroup}
               </p>
               <p>
                 <b>Amount:</b> {exercise.amount}
               </p>
-              <p>
+              {/* <p>
+                <b>Body Parts Worked:</b> {exercise.bodyPartsWorked}
+              </p> */}
+  
+              {/* <p>
                 <b>Description:</b> {exercise.description}
               </p>
               <p>
                 <b>Equipment:</b> {exercise.equipment}
-              </p>
+              </p> */}
             </div>
           ))
         )}
