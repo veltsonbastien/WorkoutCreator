@@ -1,22 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { RetrievedExercise } from "@/types";
 import { useWorkout } from "./hooks";
 import styles from "./MainContent.module.scss";
 
 export const MainContent = () => {
-  const testPrompt = "Could you build me a workout for back and biceps?";
-
-  const [prompt, setPrompt] = useState("");
+  const [prompt, setPrompt] = useState<string[]>([""]);
+  console.log("prompts: ", prompt)
   const [workout, setWorkout] = useState<RetrievedExercise[] | null>(null);
-  console.log("workout: ", workout)
 
   const { loading, error, fetchWorkout } = useWorkout();
 
   const handleCreateWorkout = async () => {
-    await fetchWorkout(prompt, setWorkout);
+    const workoutsAlreadyGenerated = workout && workout.length > 0 ? `Please try to include these exercises ${workout.map((w) => w.title).join(", ")} but do not exceed any previously mentioned exercise, duration, or max amount limits.` : ""
+   
+    const combinedPrompt = prompt.join(". ");
+    await fetchWorkout(combinedPrompt + workoutsAlreadyGenerated, setWorkout);
+    if (prompt[prompt.length - 1].trim() !== "") {
+      setPrompt([...prompt, ""]);
+    }
   };
+
+  const handlePromptChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const updatedPrompt = [...prompt];
+    updatedPrompt[updatedPrompt.length - 1] = e.target.value;
+    setPrompt(updatedPrompt);
+  }
 
   return (
     <div className={styles["wrapper"]}>
@@ -31,8 +41,8 @@ export const MainContent = () => {
         <input
           type="text"
           placeholder="Include muscles that you want to work out, workout intensity, length of workout, etc..."
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
+          value={prompt[prompt.length - 1]}
+          onChange={(e) => handlePromptChange(e)}
         />
         <button onClick={handleCreateWorkout} className={styles["button"]}>
           Create workout!
