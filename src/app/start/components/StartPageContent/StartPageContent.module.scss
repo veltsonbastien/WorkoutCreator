@@ -1,0 +1,38 @@
+.start-page-wrapper {
+  padding: 16px;
+
+  .exercises {
+    display: flex;
+    gap: 8px;
+    border: 1px solid black;
+    padding: 8px;
+    border-radius: 4px;
+    overflow-x: scroll;
+
+    .exercise {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border: 1px solid black;
+      border-radius: 8px;
+      padding: 8px;
+      min-width: 200px;
+    }
+  }
+
+  .current-exercise {
+    .edit-workout {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .set {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        flex-basis: 24.55%;
+        max-width: 320px;
+      }
+    }
+  }
+}

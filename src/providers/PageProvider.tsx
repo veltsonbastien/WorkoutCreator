@@ -2,21 +2,34 @@ import {
   createContext,
   useContext,
   useState,
-  useEffect,
   useMemo,
+  useEffect,
   ReactNode,
 } from "react";
+import { RetrievedExercise } from "@/types";
 
-interface PageContextProps {}
+interface PageContextProps {
+  workout: RetrievedExercise[] | null;
+  setWorkout: (w: RetrievedExercise[] | null) => void;
+}
 
-const PageContext = createContext<PageContextProps>({});
+const PageContext = createContext<PageContextProps>({} as PageContextProps);
 
 interface PageProviderProps {
   children: ReactNode;
 }
 
 export const PageProvider = ({ children }: PageProviderProps) => {
-  const value = {};
+  const [workout, setWorkout] = useState<RetrievedExercise[] | null>(null);
+  console.log("workout in provider: ", workout);
+
+  const value = useMemo(
+    () => ({
+      workout,
+      setWorkout,
+    }),
+    [workout],
+  );
 
   return <PageContext.Provider value={value}>{children}</PageContext.Provider>;
 };

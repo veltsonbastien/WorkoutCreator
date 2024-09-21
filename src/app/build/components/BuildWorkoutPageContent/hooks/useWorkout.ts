@@ -16,7 +16,7 @@ export const useWorkout = () => {
       const fetchedWorkout = await getWorkout(prompt);
       if (!fetchedWorkout) {
         console.error("Failed to fetch workout");
-        setWorkout(null)
+        setWorkout(null);
         return;
       }
 

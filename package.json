@@ -3,20 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "prettier --write . && next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@xenova/transformers": "^2.17.2",
+    "axios": "^1.7.7",
     "csv-parser": "^3.0.0",
+    "ioredis": "^5.4.1",
     "next": "latest",
     "openai": "^4.63.0",
     "pg": "^8.12.0",
     "prettier": "^3.3.3",
     "react": "latest",
     "react-dom": "latest",
+    "redis-server": "^1.2.2",
     "sass": "^1.78.0"
   },
   "devDependencies": {

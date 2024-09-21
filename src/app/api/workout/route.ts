@@ -14,7 +14,7 @@ export const POST = async (req: NextRequest) => {
   try {
     console.log("Encoding prompt...");
     const encodedPrompt = await generateEncodings([prompt]);
-    console.log("Prompt encoded: ", encodedPrompt);
+    //console.log("Prompt encoded: ", encodedPrompt);
 
     if (!encodedPrompt) {
       return NextResponse.json({
@@ -37,7 +37,8 @@ export const POST = async (req: NextRequest) => {
       });
     }
 
-    console.log(`Successfully got chat response from OpenAI: ${response}`);
+    console.log(`Successfully got chat response from OpenAI:`);
+    //console.log(response);
 
     return NextResponse.json({
       status: 200,

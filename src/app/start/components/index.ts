@@ -1,0 +1,1 @@
+export { StartPageContent } from "./StartPageContent";

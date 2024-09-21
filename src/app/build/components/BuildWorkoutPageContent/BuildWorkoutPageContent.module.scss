@@ -15,7 +15,6 @@
     @media (max-width: 768px) {
       margin-top: 16%;
     }
-
   }
 
   .input-wrapper {
@@ -63,19 +62,42 @@
     justify-content: center;
     align-items: center;
     margin: 0 4% 8% 4%;
-    
-    .exercise {
+
+    .workout {
       display: flex;
       flex-direction: column;
+      gap: 8px;
+
+      .exercises {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+
+        .exercise {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          flex-basis: 32.3333%;
+          border: 1px solid black;
+          padding: 16px;
+          border-radius: 8px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .workout-info {
+      display: flex;
       align-items: center;
       justify-content: center;
-      flex-basis: 33.3333%;
-      border: 1px solid black;
-      padding: 16px;
-      border-radius: 8px;
-      cursor: pointer;
+
+      button {
+        padding: 8px 16px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
     }
   }
-
-
 }

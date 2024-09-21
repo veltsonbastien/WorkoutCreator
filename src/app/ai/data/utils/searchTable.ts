@@ -12,7 +12,7 @@ export const searchTable = async (
   try {
     const res = await pool.query(searchQuery);
     const rows = res.rows;
-    console.log("Rows: ", rows);
+    //console.log("Rows: ", rows);
     return rows;
   } catch (e) {
     console.error("Error searching table: ", e);
