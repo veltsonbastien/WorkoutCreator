@@ -5,6 +5,8 @@
 .idea/*
 .env.local
 
+dump.rdb
+
 # dependencies
 /node_modules
 /.pnp
