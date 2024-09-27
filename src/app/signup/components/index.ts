@@ -1,0 +1,1 @@
+export { SignupPageContent } from "./SignupPageContent";

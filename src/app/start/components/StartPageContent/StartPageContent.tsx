@@ -1,18 +1,33 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { CURRENT_WORKOUT_KEY } from "@/constants";
 import { RetrievedExercise } from "@/types";
 import styles from "./StartPageContent.module.scss";
 
 export const StartPageContent = () => {
-  const [workout, setWorkout] = useState<RetrievedExercise[] | null>(null);
-  const [exerciseIndex, setExerciseIndex] = useState(0);
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
+  //will eventually replace these with middlware
+  useEffect(() => {
+    if (status === "loading") return;
+
+    if (!session) {
+      router.push("/signup");
+    }
+  }, [router, session, status]);
+
+  const [workout, setWorkout] = useState<RetrievedExercise[] | null>(null);
+
+  const [exerciseIndex, setExerciseIndex] = useState(0);
   const currentExercise = workout ? workout[exerciseIndex] : null;
   const setInfo = currentExercise ? currentExercise.amount.split("x") : null;
   const sets = setInfo ? Number(setInfo[0]) : null;
+
   const reps = setInfo ? Number(setInfo[1]) : null;
 
   useEffect(() => {

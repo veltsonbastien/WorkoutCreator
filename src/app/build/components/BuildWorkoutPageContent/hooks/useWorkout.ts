@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { RetrievedExercise } from "@/types";
-import { getWorkout } from "@/utils";
+import { getWorkout } from "@/utils/ai/getWorkout";
 
 export const useWorkout = () => {
   const [loading, setLoading] = useState<boolean>(false);

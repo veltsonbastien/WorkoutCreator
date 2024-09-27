@@ -1,18 +1,30 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
-import { useRouter } from "next/navigation";
 import axios from "axios";
+import { useState, ChangeEvent, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { CURRENT_WORKOUT_KEY } from "@/constants";
 import { RetrievedExercise } from "@/types";
 import { useWorkout } from "./hooks";
 import styles from "./BuildWorkoutPageContent.module.scss";
 
 export const BuildWorkoutPageContent = () => {
+  const { data: session, status } = useSession();
   const [prompt, setPrompt] = useState<string[]>([""]);
   const [workout, setWorkout] = useState<RetrievedExercise[] | null>(null);
 
   const router = useRouter();
+
+  //will eventually replace these with middlware
+  useEffect(() => {
+    if (status === "loading") return;
+
+    if (!session) {
+      router.push("/signup");
+    }
+  }, [router, session, status]);
+
   const { loading, error, fetchWorkout } = useWorkout();
 
   const handleCreateWorkout = async () => {

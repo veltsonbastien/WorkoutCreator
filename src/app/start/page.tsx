@@ -1,12 +1,10 @@
-"use client";
-
-import { PageProvider } from "@/providers";
+import { SessionProvider } from "next-auth/react";
 import { StartPageContent } from "./components";
 
-export default function Page() {
+export default function StartWorkoutPage() {
   return (
-    <PageProvider>
+    <SessionProvider>
       <StartPageContent />
-    </PageProvider>
+    </SessionProvider>
   );
 }
