@@ -1,3 +1,4 @@
+//this is an exercise type used for embedding creation
 export interface Exercise {
   title: string;
   desc: string; // a concatenation of type, bodyPart, equipment, and og desc
